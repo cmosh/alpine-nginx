@@ -1,17 +1,14 @@
-FROM cmosh/alpine-arm:3.4
+FROM cmosh/alpine-arm:3.2
 
-MAINTAINER cmosh "cmosh@live.com"
-
-# Install nginx
 RUN [ "cross-build-start" ]
 
-RUN apk add --update nginx && \
-    rm -rf /var/cache/apk/* 
+RUN apk add --update nginx && rm -rf /var/cache/apk/*
+RUN mkdir -p /tmp/nginx/client-body
 
-RUN [ "cross-build-end" ]  
+RUN [ "cross-build-end" ]
 
-# Add the files
-ADD root /
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY website /usr/share/nginx/html
 
-# Expose the ports for nginx
-EXPOSE 80 443
+CMD ["nginx", "-g", "daemon off;"]
