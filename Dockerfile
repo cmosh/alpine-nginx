@@ -1,4 +1,4 @@
-FROM cmosh/alpine-arm:3.2
+FROM cmosh/alpine-arm:3.4
 
 RUN [ "cross-build-start" ]
 
@@ -10,8 +10,6 @@ RUN apk add --update nginx && rm -rf /var/cache/apk/* \
 
 RUN [ "cross-build-end" ]
 
-COPY nginx/nginx.conf /etc/nginx/nginx.conf
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY website /usr/share/nginx/html
+COPY /root /etc/nginx
 
 CMD ["nginx", "-g", "daemon off;"]
