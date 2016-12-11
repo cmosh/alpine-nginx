@@ -6,8 +6,7 @@ MAINTAINER cmosh "cmosh@live.com"
 RUN [ "cross-build-start" ]
 
 RUN apk add --update nginx && \
-    rm -rf /var/cache/apk/* && \
-    chown -R nginx:www-data /var/lib/nginx
+    rm -rf /var/cache/apk/* 
 
 RUN [ "cross-build-end" ]  
 
