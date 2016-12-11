@@ -1,4 +1,4 @@
-FROM cmosh/alpine-arm:3.4 
+FROM cmosh/alpine-arm:edge
 
 MAINTAINER cmosh "cmosh@live.com"
 
